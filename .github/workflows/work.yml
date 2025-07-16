@@ -12,8 +12,8 @@ jobs:
     env:
       PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
       REPO_NAME: kuberepo
-      BACKEND_IMAGE: asia-south1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/backendkube:latest
-      FRONTEND_IMAGE: asia-south1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/frontendkube:latest
+      BACKEND_IMAGE: asia-south1-docker.pkg.dev/chaithu-project-463807/kuberepo/backendkube:latest
+      FRONTEND_IMAGE: asia-south1-docker.pkg.dev/chaithu-project-463807/kuberepo/frontendkube:latest
 
     steps:
       - name: Checkout code
