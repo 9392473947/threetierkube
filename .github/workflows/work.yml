@@ -10,10 +10,10 @@ jobs:
     name: Build, Push, and Test with My SQL
     runs-on: ubuntu-latest
     env:
-      PROJECT_ID: ${{ variables.GCP_PROJECT_ID }}
+      PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
       REPO_NAME: kuberepo
-      BACKEND_IMAGE: asia-south1-docker.pkg.dev/${{ variables.GCP_PROJECT_ID }}/$REPO_NAME/backendkube:latest
-      FRONTEND_IMAGE: asia-south1-docker.pkg.dev/${{ variables.GCP_PROJECT_ID }}/$REPO_NAME/frontendkube:latest
+      BACKEND_IMAGE: asia-south1-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/$REPO_NAME/backendkube:latest
+      FRONTEND_IMAGE: asia-south1-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/$REPO_NAME/frontendkube:latest
 
     steps:
       - name: Checkout code
@@ -25,7 +25,7 @@ jobs:
           credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
       - name: authenticate gcp with remote
-        run: gcloud config set project {{ variables.GCP_PROJECT_ID }}
+        run: gcloud config set project {{ vars.GCP_PROJECT_ID }}
 
       - name: Configure Docker to use Artifact Registry
         run: gcloud auth configure-docker asia-south1-docker.pkg.dev
@@ -48,7 +48,7 @@ jobs:
       - name: Authenticate to GKE
         run: |
           # gcloud components install gke-gcloud-auth-plugin
-          gcloud container clusters get-credentials privatecluster --region asia-south1 --project {{ variables.GCP_PROJECT_ID }}
+          gcloud container clusters get-credentials privatecluster --region asia-south1 --project {{ vars.GCP_PROJECT_ID }}
 
       # - name: verifying kubectl
       #   run: |
